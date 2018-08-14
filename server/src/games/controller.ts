@@ -3,18 +3,18 @@ import {
   Body, Patch 
 } from 'routing-controllers'
 import User from '../users/entity'
-import { Game, Player, Board } from './entities'
-import {IsBoard, /* isValidTransition, */ /* calculateWinner, */ /* finished */} from './logic'
-import { Validate } from 'class-validator'
+import { Game, Player, /* Board */ } from './entities'
+// import {IsBoard, /* isValidTransition, */ /* calculateWinner, */ /* finished */} from './logic'
+// import { Validate } from 'class-validator'
 import {io} from '../index'
 
-class GameUpdate {
+// class GameUpdate {
 
-  @Validate(IsBoard, {
-    message: 'Not a valid board'
-  })
-  board: Board
-}
+  // @Validate(IsBoard, {
+  //   message: 'Not a valid board'
+  // })
+  // board: Board
+// }
 
 @JsonController()
 export default class GameController {
@@ -23,11 +23,13 @@ export default class GameController {
   @Post('/games')
   @HttpCode(201)
   async createGame(
-    @CurrentUser() user: User
+    @CurrentUser() user: User,
+    @Body() game1: Game
     // @Body() game: Game
   ) {
-    await Game.changeBoard()
-    const entity = await Game.create().save()
+    await game1.changeBoard()
+    console.log("the final consoele", game1.board)
+    const entity = await game1.save()
 
     await Player.create({
       game: entity, 
@@ -81,7 +83,7 @@ export default class GameController {
   async updateGame(
     @CurrentUser() user: User,
     @Param('id') gameId: number,
-    @Body() update: GameUpdate
+    @Body() update: Game
   ) {
     const game = await Game.findOneById(gameId)
     if (!game) throw new NotFoundError(`Game does not exist`)
