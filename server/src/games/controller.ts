@@ -28,7 +28,7 @@ export default class GameController {
     // @Body() game: Game
   ) {
     await game1.changeBoard()
-    console.log("the final consoele", game1.board)
+    // console.log("the final consoele", game1.board)
     const entity = await game1.save()
 
     await Player.create({
