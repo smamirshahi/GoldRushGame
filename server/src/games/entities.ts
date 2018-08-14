@@ -1,22 +1,22 @@
 import { BaseEntity, PrimaryGeneratedColumn, Column, Entity, Index, OneToMany, ManyToOne } from 'typeorm'
 import User from '../users/entity'
 
-export type Symbol = '1' | '0'
+export type Symbol = 'x' | 'o'
 export type PlayerNumber = 'Player 1' | 'Player 2'
-export type Row = [Symbol | null, Symbol | null, Symbol | null]
-export type Board = [Row, Row, Row]
+// export type Row = [Symbol | null, Symbol | null, Symbol | null]
+// export type Board = [Row, Row, Row]
 
 type Status = 'pending' | 'started' | 'finished'
 
-const emptyRow: Row = [null, null, null]
-const emptyBoard: Board = [emptyRow, emptyRow, emptyRow]
-const randomNumber = [Math.floor(Math.random() * emptyBoard.length), Math.floor(Math.random() * emptyRow.length)]
-const newrow = [...emptyRow]
-newrow[randomNumber[1]] = '1'
-console.log(newrow)
-console.log(emptyBoard[randomNumber[0]])
-console.log(`first: ${randomNumber[0]} and second: ${randomNumber[1]}`)
-emptyBoard[randomNumber[0]] = newrow
+// const emptyRow = [null, null, null]
+// const emptyBoard = [emptyRow, emptyRow, emptyRow]
+// const randomNumber = [Math.floor(Math.random() * emptyBoard.length), Math.floor(Math.random() * emptyRow.length)]
+// const newrow = [...emptyRow]
+// newrow[randomNumber[1]] = '1'
+// console.log(newrow)
+// console.log(emptyBoard[randomNumber[0]])
+// console.log(`first: ${randomNumber[0]} and second: ${randomNumber[1]}`)
+// emptyBoard[randomNumber[0]] = newrow
 
 // buttons with one point
 // console.log(randomNumber)
@@ -32,8 +32,8 @@ export class Game extends BaseEntity {
   @PrimaryGeneratedColumn()
   id?: number
 
-  @Column('json', { default: emptyBoard })
-  board: Board
+  @Column('json', { nullable: true })
+  board: string[][]
 
   @Column({ length: 8, default: '0' })
   playerNumber: PlayerNumber
@@ -56,10 +56,19 @@ export class Game extends BaseEntity {
   players: Player[]
 
   async changeBoard() {
-    const randomNumber = [Math.floor(Math.random() * emptyBoard.length), Math.floor(Math.random() * emptyRow.length)]
-    const newrow = [...emptyRow]
-    newrow[randomNumber[1]] = '1'
-    console.log("I am rendering")
+    const emptyBoard = [
+      [null, null, null],
+      [null, null, null],
+      [null, null, null]
+  ]
+    let randomNumber = [Math.floor(Math.random() * emptyBoard.length), Math.floor(Math.random() * emptyBoard[0].length)]
+    // const newrow = [...emptyRow]
+    // newrow[randomNumber[1]] = '1'
+    // console.log("I am rendering")
+    console.log("changeBoard is trigerred")
+    emptyBoard[randomNumber[0]][randomNumber[1]] = '1'
+    this.board = emptyBoard
+    // console.log(emptyBoard)
     // console.log(newrow)
     // console.log(emptyBoard[randomNumber[0]])
     // console.log(`first: ${randomNumber[0]} and second: ${randomNumber[1]}`)
