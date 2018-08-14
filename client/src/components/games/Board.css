@@ -1,4 +1,17 @@
-.board-tile {
+#board-tile {
   height: 50px;
   width: 50px;
+}
+
+.point {
+  background-color: green;
+  background-image: url(https://vignette.wikia.nocookie.net/farmville/images/0/04/Gold_Bar-icon.png/revision/latest?cb=20130223000158);
+  background-size: cover;
+
+}
+
+button.bomb {
+  content:url(https://www.shareicon.net/download/2016/03/04/319587_clanbomber_128x128.png);
+  background-image: url(https://www.shareicon.net/download/2016/03/04/319587_clanbomber_128x128.png);
+  background-size: cover;
 }
