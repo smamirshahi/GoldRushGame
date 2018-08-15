@@ -1,11 +1,11 @@
 import React from 'react'
 import './Board.css'
-import {score, bomb} from '../../actions/games'
+// import {score, bomb} from '../../actions/games'
 
 
 const renderCel = (makeMove, rowIndex, cellIndex, symbol, hasTurn, classname) => {
   if (symbol === 1) {classname = "point"}
-  else if (symbol === -1){classname = "bomb"}
+  else if (symbol === -2){classname = "bomb"}
   else classname = "none"
 
   // makeMove = (value) =>{
@@ -23,7 +23,7 @@ const renderCel = (makeMove, rowIndex, cellIndex, symbol, hasTurn, classname) =>
       // disabled={hasTurn}
       onClick={() => makeMove(symbol)}
       key={`${rowIndex}-${cellIndex}`}
-    >{symbol || '-'}</button>
+    ></button>
   )
 }
 
