@@ -1,19 +1,20 @@
-import { 
-  JsonController, Authorized, CurrentUser, Post, Param, BadRequestError, HttpCode, NotFoundError, ForbiddenError, Get, 
-  Body, Patch 
+import {
+  JsonController, Authorized, CurrentUser, Post, Param, BadRequestError, HttpCode, NotFoundError, ForbiddenError, Get,
+  Body, Patch
 } from 'routing-controllers'
 import User from '../users/entity'
 import { Game, Player, /* Board */ } from './entities'
-// import {IsBoard, /* isValidTransition, */ /* calculateWinner, */ /* finished */} from './logic'
+import {/* IsBoard, */ /* isValidTransition, */ calculateWinner, /* finished */ } from './logic'
 // import { Validate } from 'class-validator'
-import {io} from '../index'
+import { io } from '../index'
+// import { UpdateDateColumn, CreateDateColumn } from 'typeorm';
 
 // class GameUpdate {
 
-  // @Validate(IsBoard, {
-  //   message: 'Not a valid board'
-  // })
-  // board: Board
+// @Validate(IsBoard, {
+//   message: 'Not a valid board'
+// })
+// board: Board
 // }
 
 @JsonController()
@@ -27,14 +28,14 @@ export default class GameController {
     @Body() game1: Game
     // @Body() game: Game
   ) {
+    // console.log(`created user ${user.firstName}`)
     await game1.changeBoard()
-    // console.log("the final consoele", game1.board)
     const entity = await game1.save()
 
     await Player.create({
-      game: entity, 
+      game: entity,
       user,
-      symbol: 'Player 1'
+      playerNumber: 'P1'
     }).save()
 
     const game = await Game.findOneById(entity.id)
@@ -50,6 +51,7 @@ export default class GameController {
   @Authorized()
   @Post('/games/:id([0-9]+)/players')
   @HttpCode(201)
+
   async joinGame(
     @CurrentUser() user: User,
     @Param('id') gameId: number
@@ -59,12 +61,15 @@ export default class GameController {
     if (game.status !== 'pending') throw new BadRequestError(`Game is already started`)
 
     game.status = 'started'
+    game.createdAt = Date.now().toString()
+    // @CreateDateColumn()
+    // @UpdateDateColumn()
     await game.save()
 
     const player = await Player.create({
-      game, 
+      game,
       user,
-      symbol: 'Player 2'
+      playerNumber: 'P2'
     }).save()
 
     io.emit('action', {
@@ -75,7 +80,7 @@ export default class GameController {
     return player
   }
 
-  @Authorized() // update the game
+  @Authorized() // update the game after user clicks
   // the reason that we're using patch here is because this request is not idempotent
   // http://restcookbook.com/HTTP%20Methods/idempotency/
   // try to fire the same requests twice, see what happens
@@ -83,7 +88,8 @@ export default class GameController {
   async updateGame(
     @CurrentUser() user: User,
     @Param('id') gameId: number,
-    @Body() update: Game
+    // @UpdateDateColumn()
+    // @Body() update: Game
   ) {
     const game = await Game.findOneById(gameId)
     if (!game) throw new NotFoundError(`Game does not exist`)
@@ -108,10 +114,35 @@ export default class GameController {
     // else {
     //   game.turn = player.symbol === 'x' ? 'o' : 'x'
     // }
+    game.updatedAt = Date.now() - Number(game.createdAt)
+    if (game.updatedAt < 30000) {
+      game.clickedBy = player.playerNumber
+      if (game.clickedBy.indexOf("P1") === 0) {
+        game.score1 = game.score1 + 1
+        // console.log(game.score1)
+      }
+      if (game.clickedBy.indexOf("P2") === 0) {
+        game.score2 = game.score2 + 1
+        // console.log(game.score2)
+      }
+    }
+    if (game.updatedAt > 30000) {
+      const winner = calculateWinner(game.score1, game.score2)
+      game.winner = winner
+      game.status = 'finished'
+    }
+
+    // console.log(`game clicked by ${game.clickedBy.indexOf("P1")}`)
+    // console.log(`game clicked by ${game.clickedBy.indexOf("P2")}`)
+    // console.log(game.clickedBy)
+    // console.log(`game clicked by ${game.clickedBy}`)
+    // console.log(`clicked person ${user.firstName}`)
+    // console.log(`clicked person ${player.playerNumber}`)
+    // game.playerNumber = user.firstName;
     await game.changeBoard()
     // game.board = update.board // update the board
     await game.save()
-    
+
     io.emit('action', { //telling the frontend to update the game
       type: 'UPDATE_GAME',
       payload: game

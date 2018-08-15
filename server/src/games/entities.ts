@@ -1,8 +1,8 @@
-import { BaseEntity, PrimaryGeneratedColumn, Column, Entity, Index, OneToMany, ManyToOne } from 'typeorm'
+import { BaseEntity, PrimaryGeneratedColumn, Column, Entity, Index, OneToMany, ManyToOne/* , CreateDateColumn, UpdateDateColumn */ } from 'typeorm'
 import User from '../users/entity'
 
 export type Symbol = 'x' | 'o'
-export type PlayerNumber = 'Player 1' | 'Player 2'
+export type PlayerNumber = 'P1' | 'P2'
 // export type Row = [Symbol | null, Symbol | null, Symbol | null]
 // export type Board = [Row, Row, Row]
 
@@ -35,17 +35,30 @@ export class Game extends BaseEntity {
   @Column('json', { nullable: true })
   board: Number[][]
 
-  @Column({ length: 8, default: 'Player 1' })
-  playerNumber: PlayerNumber
+  @Column({ length: 8, default: 'P1' })
+  clickedBy: PlayerNumber
+
+  // @Column()
+  // @CreateDateColumn({ type: "timestamp", precision: 6 })
+  // createdAt: Date;
+  @Column({nullable: true })
+  createdAt: string;
+
+  @Column({nullable: true})
+  updatedAt: number;
+
+  // @Column()
+  // @UpdateDateColumn({ type: "timestamp", precision: 6 })
+  // updatedAt: Date;
 
   @Column('int', { default: '0' })
-  score1: Number
+  score1: number
 
   @Column('int', { default: '0' })
-  score2: Number
+  score2: number
 
   @Column({ length: 8, nullable: true })
-  winner: PlayerNumber
+  winner: string
 
   @Column('text', { default: 'pending' })
   status: Status
@@ -60,7 +73,7 @@ export class Game extends BaseEntity {
       [0, 0, 0],
       [0, 0, 0],
       [0, 0, 0]
-  ]
+    ]
     let randomNumber = [Math.floor(Math.random() * emptyBoard.length), Math.floor(Math.random() * emptyBoard[0].length)]
     // const newrow = [...emptyRow]
     // newrow[randomNumber[1]] = '1'
@@ -77,7 +90,7 @@ export class Game extends BaseEntity {
 }
 
 @Entity()
-@Index(['game', 'user', 'symbol'], { unique: true })
+@Index(['game', 'user', 'playerNumber'], { unique: true })
 export class Player extends BaseEntity {
 
   @PrimaryGeneratedColumn()
@@ -93,5 +106,5 @@ export class Player extends BaseEntity {
   userId: number
 
   @Column('char', { length: 8 })
-  symbol: PlayerNumber
+  playerNumber: PlayerNumber
 }
