@@ -1,4 +1,4 @@
-import {ADD_GAME, UPDATE_GAME, UPDATE_GAMES, SCORE} from '../actions/games'
+import {ADD_GAME, UPDATE_GAME, UPDATE_GAMES, SCORE, BOMB} from '../actions/games'
 import {USER_LOGOUT} from '../actions/users'
 
 /*
@@ -34,7 +34,12 @@ export default (state = null, {type, payload}) => {
         ...state,
         [payload.id]: payload
       }
-
+      // case BOMB:
+      // console.log(payload)
+      //   return {
+      //     ...state,
+      //     [payload.id]: payload
+      //   }
     default:
       return state
   }

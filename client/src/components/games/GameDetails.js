@@ -36,10 +36,10 @@ class GameDetails extends PureComponent {
 
   makeMove = (value) =>{
     const  gameId = this.props.game.id
-    console.log(value)
+    // console.log(value)
     if (value === 0)return
-    else if (value === 1){this.props.score(gameId, value)}
-    else if (value === -1){this.props.bomb(gameId, value)}
+    else {this.props.score(gameId, value)}
+    // else if (value === -1){this.props.bomb(gameId, value)}
   }
 
   render() {
