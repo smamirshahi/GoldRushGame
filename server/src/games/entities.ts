@@ -41,10 +41,10 @@ export class Game extends BaseEntity {
   // @Column()
   // @CreateDateColumn({ type: "timestamp", precision: 6 })
   // createdAt: Date;
-  @Column({nullable: true })
+  @Column({ nullable: true })
   createdAt: string;
 
-  @Column({nullable: true})
+  @Column({ nullable: true })
   updatedAt: number;
 
   // @Column()
@@ -74,12 +74,19 @@ export class Game extends BaseEntity {
       [0, 0, 0],
       [0, 0, 0]
     ]
-    let randomNumber = [Math.floor(Math.random() * emptyBoard.length), Math.floor(Math.random() * emptyBoard[0].length)]
-    // const newrow = [...emptyRow]
+    let randScore = [Math.floor(Math.random() * emptyBoard.length), Math.floor(Math.random() * emptyBoard[0].length)]
+    let randBomb = [Math.floor(Math.random() * emptyBoard.length), Math.floor(Math.random() * emptyBoard[0].length)]
+    while (randBomb.toString() === randScore.toString()) {
+      console.log("inside while")
+      randBomb = [Math.floor(Math.random() * emptyBoard.length), Math.floor(Math.random() * emptyBoard[0].length)]
+    }
+    // console.log(`second time score ${randScore} and bomb ${randBomb}`)
+    emptyBoard[randScore[0]][randScore[1]] = 1
+    emptyBoard[randBomb[0]][randBomb[1]] = -1// const newrow = [...emptyRow]
     // newrow[randomNumber[1]] = '1'
     // console.log("I am rendering")
     // console.log("changeBoard is trigerred")
-    emptyBoard[randomNumber[0]][randomNumber[1]] = 1
+    // emptyBoard[randomNumber[0]][randomNumber[1]] = 1
     this.board = emptyBoard
     // console.log(emptyBoard)
     // console.log(newrow)
