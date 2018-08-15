@@ -80,7 +80,7 @@ export class Game extends BaseEntity {
     let randScore = [Math.floor(Math.random() * emptyBoard.length), Math.floor(Math.random() * emptyBoard[0].length)]
     let randBomb = [Math.floor(Math.random() * emptyBoard.length), Math.floor(Math.random() * emptyBoard[0].length)]
     while (randBomb.toString() === randScore.toString()) {
-      console.log("inside while")
+      // console.log("inside while")
       randBomb = [Math.floor(Math.random() * emptyBoard.length), Math.floor(Math.random() * emptyBoard[0].length)]
     }
     // console.log(`second time score ${randScore} and bomb ${randBomb}`)
