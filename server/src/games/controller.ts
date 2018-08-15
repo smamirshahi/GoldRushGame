@@ -4,7 +4,7 @@ import {
 } from 'routing-controllers'
 import User from '../users/entity'
 import { Game, Player, /* Board */ } from './entities'
-// import {IsBoard, /* isValidTransition, */ /* calculateWinner, */ /* finished */} from './logic'
+import {/* IsBoard, */ /* isValidTransition, */ calculateWinner, /* finished */} from './logic'
 // import { Validate } from 'class-validator'
 import {io} from '../index'
 
@@ -27,14 +27,14 @@ export default class GameController {
     @Body() game1: Game
     // @Body() game: Game
   ) {
+    console.log(`created user ${user.firstName}`)
     await game1.changeBoard()
-    // console.log("the final consoele", game1.board)
     const entity = await game1.save()
 
     await Player.create({
       game: entity, 
       user,
-      symbol: 'Player 1'
+      playerNumber: 'P1'
     }).save()
 
     const game = await Game.findOneById(entity.id)
@@ -64,7 +64,7 @@ export default class GameController {
     const player = await Player.create({
       game, 
       user,
-      symbol: 'Player 2'
+      playerNumber: 'P2'
     }).save()
 
     io.emit('action', {
@@ -75,7 +75,7 @@ export default class GameController {
     return player
   }
 
-  @Authorized() // update the game
+  @Authorized() // update the game after user clicks
   // the reason that we're using patch here is because this request is not idempotent
   // http://restcookbook.com/HTTP%20Methods/idempotency/
   // try to fire the same requests twice, see what happens
@@ -108,6 +108,26 @@ export default class GameController {
     // else {
     //   game.turn = player.symbol === 'x' ? 'o' : 'x'
     // }
+    game.clickedBy = player.playerNumber
+    if (game.clickedBy.indexOf("P1") === 0) {
+      game.score1 = game.score1 + 1
+      console.log(game.score1)
+    }
+    if (game.clickedBy.indexOf("P2") === 0) {
+      game.score2 = game.score2 + 1
+      console.log(game.score2)
+    }
+
+    const winner = calculateWinner(game.score1, game.score2)
+    game.winner = winner
+
+    console.log(`game clicked by ${game.clickedBy.indexOf("P1")}`)
+    console.log(`game clicked by ${game.clickedBy.indexOf("P2")}`)
+    console.log(game.clickedBy)
+    console.log(`game clicked by ${game.clickedBy}`)
+    // console.log(`clicked person ${user.firstName}`)
+    console.log(`clicked person ${player.playerNumber}`)
+    // game.playerNumber = user.firstName;
     await game.changeBoard()
     // game.board = update.board // update the board
     await game.save()

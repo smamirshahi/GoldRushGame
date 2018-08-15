@@ -1,5 +1,5 @@
 import { ValidatorConstraint, ValidatorConstraintInterface } from 'class-validator'
-import { Board, Symbol, /* Row, */ /* PlayerNumber */ } from './entities'
+import { Board, Symbol, /* Row, */ PlayerNumber } from './entities'
 
 @ValidatorConstraint()
 export class IsBoard implements ValidatorConstraintInterface {
@@ -29,6 +29,18 @@ export const isValidTransition = (playerSymbol: Symbol, from: Board, to: Board) 
     changes[0].to === playerSymbol && 
     changes[0].from === null
 }
+
+// the winner is the one who has higher score
+export const calculateWinner = (score1: number, score2: number): PlayerNumber | string => {
+if (score1 > score2) {
+  return 'P1'
+} else if (score1 < score2) {
+  return 'P2'
+} else {
+  return 'fair'
+}
+}
+
 
 // the winner is the one who has higher score
 // export const calculateWinner = (board: Board): PlayerNumber | null =>

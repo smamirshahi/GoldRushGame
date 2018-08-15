@@ -2,7 +2,7 @@ import { BaseEntity, PrimaryGeneratedColumn, Column, Entity, Index, OneToMany, M
 import User from '../users/entity'
 
 export type Symbol = 'x' | 'o'
-export type PlayerNumber = 'Player 1' | 'Player 2'
+export type PlayerNumber = 'P1' | 'P2'
 // export type Row = [Symbol | null, Symbol | null, Symbol | null]
 // export type Board = [Row, Row, Row]
 
@@ -35,17 +35,17 @@ export class Game extends BaseEntity {
   @Column('json', { nullable: true })
   board: Number[][]
 
-  @Column({ length: 8, default: 'Player 1' })
-  playerNumber: PlayerNumber
+  @Column({ length: 8, default: 'P1' })
+  clickedBy: PlayerNumber
 
   @Column('int', { default: '0' })
-  score1: Number
+  score1: number
 
   @Column('int', { default: '0' })
-  score2: Number
+  score2: number
 
   @Column({ length: 8, nullable: true })
-  winner: PlayerNumber
+  winner: string
 
   @Column('text', { default: 'pending' })
   status: Status
@@ -77,7 +77,7 @@ export class Game extends BaseEntity {
 }
 
 @Entity()
-@Index(['game', 'user', 'symbol'], { unique: true })
+@Index(['game', 'user', 'playerNumber'], { unique: true })
 export class Player extends BaseEntity {
 
   @PrimaryGeneratedColumn()
@@ -93,5 +93,5 @@ export class Player extends BaseEntity {
   userId: number
 
   @Column('char', { length: 8 })
-  symbol: PlayerNumber
+  playerNumber: PlayerNumber
 }
