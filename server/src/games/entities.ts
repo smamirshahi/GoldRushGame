@@ -70,9 +70,12 @@ export class Game extends BaseEntity {
 
   async changeBoard() {
     const emptyBoard = [
-      [0, 0, 0],
-      [0, 0, 0],
-      [0, 0, 0]
+      [0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0],
     ]
     let randScore = [Math.floor(Math.random() * emptyBoard.length), Math.floor(Math.random() * emptyBoard[0].length)]
     let randBomb = [Math.floor(Math.random() * emptyBoard.length), Math.floor(Math.random() * emptyBoard[0].length)]
