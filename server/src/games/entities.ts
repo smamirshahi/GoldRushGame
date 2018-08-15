@@ -1,4 +1,4 @@
-import { BaseEntity, PrimaryGeneratedColumn, Column, Entity, Index, OneToMany, ManyToOne } from 'typeorm'
+import { BaseEntity, PrimaryGeneratedColumn, Column, Entity, Index, OneToMany, ManyToOne/* , CreateDateColumn, UpdateDateColumn */ } from 'typeorm'
 import User from '../users/entity'
 
 export type Symbol = 'x' | 'o'
@@ -38,6 +38,19 @@ export class Game extends BaseEntity {
   @Column({ length: 8, default: 'P1' })
   clickedBy: PlayerNumber
 
+  // @Column()
+  // @CreateDateColumn({ type: "timestamp", precision: 6 })
+  // createdAt: Date;
+  @Column({nullable: true })
+  createdAt: string;
+
+  @Column({nullable: true})
+  updatedAt: number;
+
+  // @Column()
+  // @UpdateDateColumn({ type: "timestamp", precision: 6 })
+  // updatedAt: Date;
+
   @Column('int', { default: '0' })
   score1: number
 
@@ -60,7 +73,7 @@ export class Game extends BaseEntity {
       [0, 0, 0],
       [0, 0, 0],
       [0, 0, 0]
-  ]
+    ]
     let randomNumber = [Math.floor(Math.random() * emptyBoard.length), Math.floor(Math.random() * emptyBoard[0].length)]
     // const newrow = [...emptyRow]
     // newrow[randomNumber[1]] = '1'
