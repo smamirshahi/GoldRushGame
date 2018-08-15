@@ -52,7 +52,7 @@ class GameDetails extends PureComponent {
     if (game === null || users === null) return 'Loading...'
     if (!game) return 'Not found'
 
-    const player = game.players.find(p => p.userId === userId)
+    // const player = game.players.find(p => p.userId === userId)
 
     const winner = game.players
       .filter(p => p.symbol === game.winner)
@@ -66,11 +66,11 @@ class GameDetails extends PureComponent {
 
        <p> Player1:<div>{game.score1}</div></p> <p>Player2:<div>{game.score2}</div></p>
 
-      {
+      {/* {
         game.status === 'started' &&
         player && player.symbol === game.turn &&
         <div>It's your turn!</div>
-      }
+      } */}
 
       {
         game.status === 'pending' &&
