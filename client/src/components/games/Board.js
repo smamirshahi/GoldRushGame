@@ -1,6 +1,6 @@
 import React from 'react'
 import './Board.css'
-import {score, bomb} from '../../actions/games'
+// import {score, bomb} from '../../actions/games'
 
 
 const renderCel = (makeMove, rowIndex, cellIndex, symbol, hasTurn, classname) => {
