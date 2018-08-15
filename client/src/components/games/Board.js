@@ -8,6 +8,7 @@ const renderCel = (makeMove, rowIndex, cellIndex, symbol, hasTurn, classname) =>
   else if (symbol === -2){classname = "bomb"}
   else classname = "none"
 
+  
   // makeMove = (value) =>{
   //   console.log(value)
   //   if (value === 0)return

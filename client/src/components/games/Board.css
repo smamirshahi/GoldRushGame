@@ -12,6 +12,7 @@
 .none{
   background-image: url(https://cdn2.iconfinder.com/data/icons/outlined-valuable-items/200/minerals_gold-512.png);
   background-size: cover;
+  background-color: white;
   height: 100px;
   width: 100px;
 
@@ -20,6 +21,7 @@
   /* background-color: green; */
   background-image: url(http://www.iconarchive.com/download/i2597/antialiasfactory/jewelry/Gold-Bullion.ico);
   background-size: cover;
+  background-color: white;
   height: 100px;
   width: 100px;
 }
@@ -27,6 +29,7 @@
 button.bomb {
   content:url(https://www.shareicon.net/download/2016/03/04/319587_clanbomber_128x128.png);
   background-image: url(../../images/gold-bomb-illustration-burning-fuse-shadow-realistic-style-88895335.png);
+  background-color: white;
   background-size: cover;
   height: 100px;
   width: 100px;

@@ -8,16 +8,29 @@ import Paper from 'material-ui/Paper'
 import Board from './Board'
 import './GameDetails.css'
 import {score, bomb} from '../../actions/games'
+import Clock from './Clock'
 
 
 class GameDetails extends PureComponent {
-
+ state = {}
+    
   componentWillMount() {
     if (this.props.authenticated) {
       if (this.props.game === null) this.props.getGames()
       if (this.props.users === null) this.props.getUsers()
     }
-  }
+    // const futureTime = new Date().getTime() /1000 + 30;
+
+    // this.state =  setInterval(function(){
+    //   let now = new Date().getTime() /1000
+    //   let difference = Math.floor(now - futureTime)
+    //     if (difference ===0){clearInterval(x)}
+    //     return  { time: difference }
+    //     // console.log(difference)
+
+    //   }, 1000)
+
+    }
 
   joinGame = () => this.props.joinGame(this.props.game.id)
 
@@ -43,7 +56,9 @@ class GameDetails extends PureComponent {
   }
 
   render() {
+    
     const {game, users, authenticated, userId} = this.props
+
 
     if (!authenticated) return (
 			<Redirect to="/login" />
@@ -57,14 +72,19 @@ class GameDetails extends PureComponent {
     const winner = game.players
       .filter(p => p.symbol === game.winner)
       .map(p => p.userId)[0]
-
+ 
+    
     return (<Paper className="outer-paper">
       <h1>Game #{game.id}</h1>
 
       <p>Status: {game.status}</p>
-      <p>Score: <br></br></p>
-
-       <p> Player1:<div>{game.score1}</div></p> <p>Player2:<div>{game.score2}</div></p>
+      <p>Time: <br></br></p>
+      {game.status === 'started' && <Clock /> }
+     
+      <p>Score: <br /></p>
+      
+      {/* {console.log(difference)} */}
+       <p> Player1:<br />{game.score1}</p> <p>Player2:<br />{game.score2}</p>
 
       {/* {
         game.status === 'started' &&
