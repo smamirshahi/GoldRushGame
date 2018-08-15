@@ -89,7 +89,8 @@ export default class GameController {
     @CurrentUser() user: User,
     @Param('id') gameId: number,
     // @UpdateDateColumn()
-    // @Body() update: Game
+    @Body() update: Partial<Game>
+    // @Body() score: string | number
   ) {
     const game = await Game.findOneById(gameId)
     if (!game) throw new NotFoundError(`Game does not exist`)
@@ -114,16 +115,19 @@ export default class GameController {
     // else {
     //   game.turn = player.symbol === 'x' ? 'o' : 'x'
     // }
+    console.log(`you pressed a button with the value of: ${update.score1}`)
     game.updatedAt = Date.now() - Number(game.createdAt)
-    if (game.updatedAt < 30000) {
+    if (game.updatedAt < 3000000) {
       game.clickedBy = player.playerNumber
       if (game.clickedBy.indexOf("P1") === 0) {
-        game.score1 = game.score1 + 1
+        console.log(typeof(game.score1))
+        game.score1 = game.score1 + update.score1
         // console.log(game.score1)
       }
       if (game.clickedBy.indexOf("P2") === 0) {
-        game.score2 = game.score2 + 1
-        // console.log(game.score2)
+        console.log(typeof(game.score2))
+        game.score2 = game.score2 + update.score1
+        // console.log(update.score1)
       }
     }
     if (game.updatedAt > 30000) {
