@@ -8,6 +8,9 @@ export const UPDATE_GAME = 'UPDATE_GAME'
 export const UPDATE_GAMES = 'UPDATE_GAMES'
 export const JOIN_GAME_SUCCESS = 'JOIN_GAME_SUCCESS'
 export const UPDATE_GAME_SUCCESS = 'UPDATE_GAME_SUCCESS'
+export const SCORE = 'SCORE'
+export const BOMB = 'BOMB'
+
 
 const updateGames = games => ({
   type: UPDATE_GAMES,
@@ -81,3 +84,26 @@ export const updateGame = (gameId, board) => (dispatch, getState) => {
     .then(_ => dispatch(updateGameSuccess()))
     .catch(err => console.error(err))
 }
+
+export const score = (gameId, value) => (dispatch, getState) =>{
+  const state = getState()
+  const jwt = state.currentUser.jwt
+
+  request
+    .patch(`${baseUrl}/games/${gameId}`)
+    .set('Authorization', `Bearer ${jwt}`)
+    .send({ value })
+    .then(_ => dispatch(updateGameSuccess()))
+    .catch(err => console.error(err))
+}
+
+// export const score = (games) =>({
+  
+//   type: SCORE,
+//   payload: games
+// })
+
+export const bomb = (value) => ({
+  type: BOMB,
+  payload: value
+})
