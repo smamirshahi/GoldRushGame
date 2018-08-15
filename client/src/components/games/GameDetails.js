@@ -62,6 +62,9 @@ class GameDetails extends PureComponent {
       <h1>Game #{game.id}</h1>
 
       <p>Status: {game.status}</p>
+      <p>Score: <br></br></p>
+
+       <p> Player1:<div>{game.score1}</div></p> <p>Player2:<div>{game.score2}</div></p>
 
       {
         game.status === 'started' &&
