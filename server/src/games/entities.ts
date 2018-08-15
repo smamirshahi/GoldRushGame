@@ -33,9 +33,9 @@ export class Game extends BaseEntity {
   id?: number
 
   @Column('json', { nullable: true })
-  board: string[][]
+  board: Number[][]
 
-  @Column({ length: 8, default: '0' })
+  @Column({ length: 8, default: 'Player 1' })
   playerNumber: PlayerNumber
 
   @Column('int', { default: '0' })
@@ -57,16 +57,16 @@ export class Game extends BaseEntity {
 
   async changeBoard() {
     const emptyBoard = [
-      [null, null, null],
-      [null, null, null],
-      [null, null, null]
+      [0, 0, 0],
+      [0, 0, 0],
+      [0, 0, 0]
   ]
     let randomNumber = [Math.floor(Math.random() * emptyBoard.length), Math.floor(Math.random() * emptyBoard[0].length)]
     // const newrow = [...emptyRow]
     // newrow[randomNumber[1]] = '1'
     // console.log("I am rendering")
-    console.log("changeBoard is trigerred")
-    emptyBoard[randomNumber[0]][randomNumber[1]] = '1'
+    // console.log("changeBoard is trigerred")
+    emptyBoard[randomNumber[0]][randomNumber[1]] = 1
     this.board = emptyBoard
     // console.log(emptyBoard)
     // console.log(newrow)

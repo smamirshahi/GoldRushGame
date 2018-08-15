@@ -19,7 +19,7 @@ import {io} from '../index'
 @JsonController()
 export default class GameController {
 
-  @Authorized()
+  @Authorized() // make a new game
   @Post('/games')
   @HttpCode(201)
   async createGame(
@@ -28,7 +28,7 @@ export default class GameController {
     // @Body() game: Game
   ) {
     await game1.changeBoard()
-    console.log("the final consoele", game1.board)
+    // console.log("the final consoele", game1.board)
     const entity = await game1.save()
 
     await Player.create({
@@ -75,7 +75,7 @@ export default class GameController {
     return player
   }
 
-  @Authorized()
+  @Authorized() // update the game
   // the reason that we're using patch here is because this request is not idempotent
   // http://restcookbook.com/HTTP%20Methods/idempotency/
   // try to fire the same requests twice, see what happens
@@ -108,10 +108,11 @@ export default class GameController {
     // else {
     //   game.turn = player.symbol === 'x' ? 'o' : 'x'
     // }
-    game.board = update.board // update the board
+    await game.changeBoard()
+    // game.board = update.board // update the board
     await game.save()
     
-    io.emit('action', {
+    io.emit('action', { //telling the frontend to update the game
       type: 'UPDATE_GAME',
       payload: game
     })
@@ -119,7 +120,7 @@ export default class GameController {
     return game
   }
 
-  @Authorized()
+  @Authorized() // enters the game that the user selected
   @Get('/games/:id([0-9]+)')
   getGame(
     @Param('id') id: number
@@ -127,7 +128,7 @@ export default class GameController {
     return Game.findOneById(id)
   }
 
-  @Authorized()
+  @Authorized() // return the list of games
   @Get('/games')
   getGames() {
     return Game.find()
