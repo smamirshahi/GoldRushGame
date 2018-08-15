@@ -103,7 +103,15 @@ export const score = (gameId, score1) => (dispatch, getState) =>{
 //   payload: games
 // })
 
-export const bomb = (value) => ({
-  type: BOMB,
-  payload: value
-})
+export const bomb = (gameId, value) => (dispatch, getState) =>{
+  const state = getState()
+  const jwt = state.currentUser.jwt
+
+  request
+    .patch(`${baseUrl}/games/${gameId}`)
+    .set('Authorization', `Bearer ${jwt}`)
+    // console.log(value)
+    .send({ value })
+    .then(_ => dispatch(updateGameSuccess()))
+    .catch(err => console.error(err))
+}
