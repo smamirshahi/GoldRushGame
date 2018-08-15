@@ -116,21 +116,23 @@ export default class GameController {
     //   game.turn = player.symbol === 'x' ? 'o' : 'x'
     // }
     console.log(`you pressed a button with the value of: ${update.score1}`)
+    // console.log("number: ", update.score1 + 1)
+    // console.log("number2: ", game.score1 + 1)
     game.updatedAt = Date.now() - Number(game.createdAt)
     if (game.updatedAt < 3000000) {
       game.clickedBy = player.playerNumber
-      if (game.clickedBy.indexOf("P1") === 0) {
+      if (!!update.score1 && game.clickedBy.indexOf("P1") === 0) {
         console.log(typeof(game.score1))
         game.score1 = game.score1 + update.score1
         // console.log(game.score1)
       }
-      if (game.clickedBy.indexOf("P2") === 0) {
+      if (!!update.score1 && game.clickedBy.indexOf("P2") === 0) {
         console.log(typeof(game.score2))
         game.score2 = game.score2 + update.score1
         // console.log(update.score1)
       }
     }
-    if (game.updatedAt > 30000) {
+    if (game.updatedAt > 3000000) {
       const winner = calculateWinner(game.score1, game.score2)
       game.winner = winner
       game.status = 'finished'
