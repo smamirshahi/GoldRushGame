@@ -121,6 +121,7 @@ export default class GameController {
     game.updatedAt = Date.now() - Number(game.createdAt)
     if (game.updatedAt < 3000000) {
       game.clickedBy = player.playerNumber
+      game.gameRound = game.gameRound + 1
       if (!!update.score1 && game.clickedBy.indexOf("P1") === 0) {
         // console.log(typeof(game.score1))
         game.score1 = game.score1 + update.score1

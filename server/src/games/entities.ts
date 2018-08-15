@@ -35,6 +35,9 @@ export class Game extends BaseEntity {
   @Column('json', { nullable: true })
   board: Number[][]
 
+  @Column('int', { default: '1' })
+  gameRound: number
+
   @Column({ length: 8, default: 'P1' })
   clickedBy: PlayerNumber
 
@@ -77,15 +80,40 @@ export class Game extends BaseEntity {
       [0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0],
     ]
-    let randScore = [Math.floor(Math.random() * emptyBoard.length), Math.floor(Math.random() * emptyBoard[0].length)]
-    let randBomb = [Math.floor(Math.random() * emptyBoard.length), Math.floor(Math.random() * emptyBoard[0].length)]
-    while (randBomb.toString() === randScore.toString()) {
-      // console.log("inside while")
-      randBomb = [Math.floor(Math.random() * emptyBoard.length), Math.floor(Math.random() * emptyBoard[0].length)]
+
+    function randomNumber(length1, length2) {
+      let a1 = [Math.floor(Math.random() * length1), Math.floor(Math.random() * length2)]
+      return a1
     }
-    // console.log(`second time score ${randScore} and bomb ${randBomb}`)
-    emptyBoard[randScore[0]][randScore[1]] = 1
-    emptyBoard[randBomb[0]][randBomb[1]] = -1// const newrow = [...emptyRow]
+
+    let array1 = new Array()    
+    for (let i = 0; i < Math.min(this.gameRound, emptyBoard.length * emptyBoard[0].length); i++) {
+      let newArray = randomNumber(emptyBoard.length, emptyBoard[0].length)
+      array1.push(newArray)
+    }
+
+    let randScore1 = randomNumber(emptyBoard.length, emptyBoard[0].length)
+    emptyBoard[randScore1[0]][randScore1[1]] = 1
+
+    let randScore5 = randomNumber(emptyBoard.length, emptyBoard[0].length)
+    emptyBoard[randScore5[0]][randScore5[1]] = 5
+    
+
+    array1.map(element => {
+      if (element.toString() !== randScore1.toString() && element.toString() !== randScore5.toString()) {
+        emptyBoard[element[0]][element[1]] = -2
+      }
+    })
+
+    // let randScore = [Math.floor(Math.random() * emptyBoard.length), Math.floor(Math.random() * emptyBoard[0].length)]
+    // let randBomb = [Math.floor(Math.random() * emptyBoard.length), Math.floor(Math.random() * emptyBoard[0].length)]
+    // while (randBomb.toString() === randScore.toString()) {
+    //   // console.log("inside while")
+    //   randBomb = [Math.floor(Math.random() * emptyBoard.length), Math.floor(Math.random() * emptyBoard[0].length)]
+    // }
+    // // console.log(`second time score ${randScore} and bomb ${randBomb}`)
+    // emptyBoard[randScore[0]][randScore[1]] = 1
+    // emptyBoard[randBomb[0]][randBomb[1]] = -2// const newrow = [...emptyRow]
     // newrow[randomNumber[1]] = '1'
     // console.log("I am rendering")
     // console.log("changeBoard is trigerred")
