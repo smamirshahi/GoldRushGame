@@ -28,6 +28,10 @@ class Clock extends PureComponent {
         } else {
             this.clock_class = "normal_class"
         }
+        if (time >= 20) this.clock_class = "small_clock".concat(" general_clock")
+        else if (time >= 10) this.clock_class = "normal_clock".concat(" general_clock")
+        else if (time >= 5) this.clock_class = "large_clock".concat(" general_clock", " blink_me")
+        else this.clock_class = "super_clock".concat(" general_clock", " blink_me")
 
         return (
             <div className = {this.clock_class}>

@@ -1,6 +1,6 @@
 import {
   JsonController, Authorized, CurrentUser, Post, Param, BadRequestError, HttpCode, NotFoundError, ForbiddenError, Get,
-  Body, Patch
+  Body, Patch, BodyParam
 } from 'routing-controllers'
 import User from '../users/entity'
 import { Game, Player, /* Board */ } from './entities'
@@ -72,6 +72,32 @@ export default class GameController {
       type: 'UPDATE_GAME',
       payload: await Game.findOneById(game.id)
     })
+    
+    
+
+    // function myFunc(game1, score1, score2) {
+    //   const win = calculateWinner(score1, score2)
+    //   console.log(win)
+    //   // console.log(winner)
+    //   game1.winner = win
+    //   game1.status = 'finished'
+    //   console.log(game1.status)
+    //   return game1.save()
+    //   // console.log(game1.status)
+    // }
+
+    // setTimeout(myFunc, 10000, game, game.score1, game.score2)
+
+    // const player = await Player.create({
+    //   game,
+    //   user,
+    //   playerNumber: 'P2'
+    // }).save()
+
+    // io.emit('action', {
+    //   type: 'UPDATE_GAME',
+    //   payload: await Game.findOneById(game.id)
+    // })
 
     return player
   }
@@ -85,6 +111,7 @@ export default class GameController {
     @CurrentUser() user: User,
     @Param('id') gameId: number,
     @Body() update: Partial<Game>
+    // @BodyParam("score1") update
   ) {
     const game = await Game.findOneById(gameId)
     if (!game) throw new NotFoundError(`Game does not exist`)
@@ -103,7 +130,8 @@ export default class GameController {
       if (!!update.score1 && game.clickedBy.indexOf("P2") === 0) {
         game.score2 = game.score2 + update.score1
       }
-    } else {
+    } 
+    else {
       const winner = calculateWinner(game.score1, game.score2)
       game.winner = winner
       game.status = 'finished'

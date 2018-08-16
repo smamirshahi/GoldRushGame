@@ -9,9 +9,28 @@ import Board from './Board'
 import './GameDetails.css'
 import { score, bomb } from '../../actions/games'
 import Clock from './Clock'
+import coinSound from '../../sound/coin.mp3'
+import explosionSound from '../../sound/explosion.mp3'
+import minningSound from '../../sound/minning.mp3'
 
 
 class GameDetails extends PureComponent {
+  coinEffect = new Audio(coinSound)
+  explosionEffect = new Audio(explosionSound)
+  minningEffect = new Audio(minningSound)
+
+  onCoinPlay() {
+    this.coinEffect.play();
+  }
+
+  onExplosionPlay() {
+    this.explosionEffect.play();
+  }
+
+  onMinningPlay() {
+    this.minningEffect.play();
+  }
+
   state = {}
 
   componentWillMount() {
@@ -50,6 +69,10 @@ class GameDetails extends PureComponent {
   makeMove = (value) => {
     const gameId = this.props.game.id
     // console.log(value)
+    if (value === 0) {this.onMinningPlay()}
+    if (value === 1) {this.onCoinPlay()}
+    if (value === -2) {this.onExplosionPlay()}
+
     if (value === 0) return
     else { this.props.score(gameId, value) }
     // else if (value === -1){this.props.bomb(gameId, value)}
@@ -129,6 +152,23 @@ class GameDetails extends PureComponent {
         game.status !== 'pending' &&
         <Board board={game.board} makeMove={this.makeMove} />
       }
+
+      <p> Introduction </p>
+      <div className="flex-container">
+      {/* src={require('/one.jpeg')} */}
+        <img className="flex-item" src={require("../../images/gold-bomb-illustration-burning-fuse-shadow-realistic-style-88895335.png")} alt="coin"></img>
+        <section className="flex-item">This has 1 point</section>
+      </div>
+      <div>
+        <p>This has 3 point</p>
+      </div>
+      <div>
+        <p>This has -2 point</p>
+      </div>
+      <div>
+        <p>You need to click faster than your opponent. The cells randomly check after each click</p>
+      </div>
+
     </Paper>)
   }
 }
