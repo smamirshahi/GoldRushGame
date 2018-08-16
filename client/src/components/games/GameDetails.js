@@ -88,17 +88,21 @@ class GameDetails extends PureComponent {
 
 
     return (<Paper className="outer-paper">
-      <h1>Game #{game.id}</h1>
+      <div className='topper'>
+      </div>
+      <p className="status">Status: {game.status}</p>
 
-      <p>Status: {game.status}</p>
+      
   
       <div className="flex-container">
       <div>
        <p className={p1Class.concat(" flex-item")}> Player1:<br />{game.score1}</p>
        </div>
-      <div>
+      <div className="countdown">
       <p>Time: <br></br></p>
+      <div className="countdownClock">
        {game.status === 'started' && <Clock />}
+       </div>
       </div>
        <p className={p2Class.concat(" flex-item")}>Player2:<br />{game.score2}</p>
        </div >

@@ -5,19 +5,62 @@
   width: 60%;
 }
 
+.status{
+  text-align: center;
+}
+.countdownClock{
+  height: 100px;
+  width: 100px;
+  text-align: center;
+}
+.countdown{
+  text-align: center;
+}
+
 .higher_score {
-  background: green;
+  background: white;
+  background-image: url(../../images/facesmile.ico);
+  background-size:68%;
+  background-repeat: no-repeat;
+  background-position-y: 30px;
+  height: 100px;
+  width: 100px;
+  text-align: center
+  
 }
 
 .lower_score {
-  background: red;
-}
+  background: white;
+  background-image: url(../../images/face.ico);
+  background-size:68%;
+  background-repeat: no-repeat;
+  background-position-y: 30px;
+  height: 100px;
+  width: 100px;
+  text-align: center}
 
 .equal_score {
-  background: yellow;
+  background: white;
+  background-image: url(../../images/buddhagold.jpg);
+  background-size:75%;
+  background-position-x: 13px;
+  background-repeat: no-repeat;
+  background-position-y: 30px;
+  height: 100px;
+  width: 100px;
+  text-align: center
 }
 
 .flex-container {
   display: flex;
-  flex-direction: row
+  flex-direction: row;
+  justify-content: space-between
+}
+
+.topper{
+  background-image: url(../../images/goldrushfire.gif);
+  background-size:contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 140px;
 }
