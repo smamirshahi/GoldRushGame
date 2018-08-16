@@ -37,7 +37,7 @@ if (score1 > score2) {
 } else if (score1 < score2) {
   return 'P2'
 } else {
-  return 'fair'
+  return 'tie'
 }
 }
 

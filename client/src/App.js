@@ -7,12 +7,19 @@ import GameDetails from './components/games/GameDetails'
 import LogoutPage from './components/logout/LogoutPage'
 import './App.css'
 import TopBar from './components/layout/TopBar'
+import soundFile from './sound/Banjo.mp3'
 
 // <Route exact path="/signup" component={SignupPage} />
 // <Route exact path="/games" component={GamesList} />
 // <Route exact path="/games/:id" component={GameDetails} />
 
 class App extends Component {
+  sound = new Audio(soundFile)
+
+  onPlay() {
+    this.sound.play();
+  }
+
   render() {
     return (
       <Router>
@@ -20,13 +27,15 @@ class App extends Component {
           <nav>
             <TopBar />
           </nav>
-          <main style={{marginTop:75}}>
+          <main style={{ marginTop: 75 }}>
+            {this.onPlay()}
+
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/logout" component={LogoutPage} />
             <Route exact path="/signup" component={SignupPage} />
             <Route exact path="/games" component={GamesList} />
             <Route exact path="/games/:id" component={GameDetails} />
-            <Route exact path="/" render={ () => <Redirect to="/games" /> } />
+            <Route exact path="/" render={() => <Redirect to="/games" />} />
           </main>
         </div>
       </Router>

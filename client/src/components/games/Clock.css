@@ -1,15 +1,32 @@
-.bold_class {
-    /* background: purple; */
-    font-size: 2em;
+.general_clock {
     height: 50px;
     text-align: center;
     vertical-align: middle;
 }
 
-.normal_class {
-    /* background: yellow; */
-    font-size: 1.5em;
-    height: 50px;
-    text-align: center;
-    vertical-align: middle;
+.small_clock {
+    font-size: 1em;
 }
+
+.normal_clock {
+    font-size: 1.5em;
+}
+
+.large_clock {
+    font-size: 2em;
+}
+
+.super_clock {
+    font-size: 2.5em;
+    color: red;
+}
+
+.blink_me {
+    animation: blinker 1s linear infinite;
+  }
+  
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
