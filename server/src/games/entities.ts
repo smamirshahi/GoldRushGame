@@ -3,28 +3,8 @@ import User from '../users/entity'
 
 export type Symbol = 'x' | 'o'
 export type PlayerNumber = 'P1' | 'P2'
-// export type Row = [Symbol | null, Symbol | null, Symbol | null]
-// export type Board = [Row, Row, Row]
 
 type Status = 'pending' | 'started' | 'finished'
-
-// const emptyRow = [null, null, null]
-// const emptyBoard = [emptyRow, emptyRow, emptyRow]
-// const randomNumber = [Math.floor(Math.random() * emptyBoard.length), Math.floor(Math.random() * emptyRow.length)]
-// const newrow = [...emptyRow]
-// newrow[randomNumber[1]] = '1'
-// console.log(newrow)
-// console.log(emptyBoard[randomNumber[0]])
-// console.log(`first: ${randomNumber[0]} and second: ${randomNumber[1]}`)
-// emptyBoard[randomNumber[0]] = newrow
-
-// buttons with one point
-// console.log(randomNumber)
-// emptyBoard[randomNumber[0]][randomNumber[1]] = '1';
-
-
-
-// emptyBoard[randomNumber[0]][randomNumber[1]]
 
 @Entity()
 export class Game extends BaseEntity {
@@ -41,18 +21,11 @@ export class Game extends BaseEntity {
   @Column({ length: 8, default: 'P1' })
   clickedBy: PlayerNumber
 
-  // @Column()
-  // @CreateDateColumn({ type: "timestamp", precision: 6 })
-  // createdAt: Date;
   @Column({ nullable: true })
   createdAt: string;
 
   @Column({ nullable: true })
   updatedAt: number;
-
-  // @Column()
-  // @UpdateDateColumn({ type: "timestamp", precision: 6 })
-  // updatedAt: Date;
 
   @Column('int', { default: '0' })
   score1: number
@@ -86,7 +59,7 @@ export class Game extends BaseEntity {
       return a1
     }
 
-    let array1 = new Array()    
+    let array1 = new Array()
     for (let i = 0; i < Math.min(this.gameRound, emptyBoard.length * emptyBoard[0].length); i++) {
       let newArray = randomNumber(emptyBoard.length, emptyBoard[0].length)
       array1.push(newArray)
@@ -96,34 +69,17 @@ export class Game extends BaseEntity {
     emptyBoard[randScore1[0]][randScore1[1]] = 1
 
     let randScore5 = randomNumber(emptyBoard.length, emptyBoard[0].length)
-    emptyBoard[randScore5[0]][randScore5[1]] = 5
-    
-
+  
     array1.map(element => {
-      if (element.toString() !== randScore1.toString() && element.toString() !== randScore5.toString()) {
+      if (element.toString() !== randScore1.toString()) {
         emptyBoard[element[0]][element[1]] = -2
+        if (this.gameRound % 7 === 0) {
+          emptyBoard[randScore5[0]][randScore5[1]] = 5
+        }
       }
     })
 
-    // let randScore = [Math.floor(Math.random() * emptyBoard.length), Math.floor(Math.random() * emptyBoard[0].length)]
-    // let randBomb = [Math.floor(Math.random() * emptyBoard.length), Math.floor(Math.random() * emptyBoard[0].length)]
-    // while (randBomb.toString() === randScore.toString()) {
-    //   // console.log("inside while")
-    //   randBomb = [Math.floor(Math.random() * emptyBoard.length), Math.floor(Math.random() * emptyBoard[0].length)]
-    // }
-    // // console.log(`second time score ${randScore} and bomb ${randBomb}`)
-    // emptyBoard[randScore[0]][randScore[1]] = 1
-    // emptyBoard[randBomb[0]][randBomb[1]] = -2// const newrow = [...emptyRow]
-    // newrow[randomNumber[1]] = '1'
-    // console.log("I am rendering")
-    // console.log("changeBoard is trigerred")
-    // emptyBoard[randomNumber[0]][randomNumber[1]] = 1
     this.board = emptyBoard
-    // console.log(emptyBoard)
-    // console.log(newrow)
-    // console.log(emptyBoard[randomNumber[0]])
-    // console.log(`first: ${randomNumber[0]} and second: ${randomNumber[1]}`)
-    // emptyBoard[randomNumber[0]] = newrow
   }
 }
 
