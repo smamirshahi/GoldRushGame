@@ -1,4 +1,5 @@
 import React from 'react'
+import './Board.css'
 import './Board2.css'
 // import {score, bomb} from '../../actions/games'
 
@@ -28,10 +29,11 @@ const renderCel = (makeMove, rowIndex, cellIndex, symbol, hasTurn, classname) =>
     ></button>
   )
 }
-
 export default ({board, makeMove}) => board.map((cells, rowIndex) =>
-  <div key={rowIndex}>
+  <div key={rowIndex} className="row">
     {cells.map((symbol, cellIndex) => renderCel(makeMove, rowIndex, cellIndex,symbol,false))}
   </div>
 )
+
+
 
