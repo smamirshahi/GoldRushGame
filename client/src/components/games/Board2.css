@@ -1,0 +1,48 @@
+#board-tile {
+    height: 100px;
+    width: 100px;
+  }
+  
+  /* button {
+    height: 100px;
+    width: 100px;
+    background-color: white
+  } */
+/* body{
+      display: flex;
+      justify-content: center
+  } */
+.row{
+       display: flex;
+       justify-content: center;
+
+}
+  .none{
+    background-image: url(../../images/brickwall2.png);
+    background-size: cover;
+    background-color: white;
+    height: 50px;
+    width: 50px;
+  }
+  .point {
+    background-image: url(../../images/brickgold.png);
+    background-size: cover;
+    background-color: white;
+    height: 50px;
+    width: 50px;
+  }
+
+  button.bomb {
+    background-image: url(../../images/brickbomb.png);
+    background-color: white;
+    background-size: cover;
+    height: 50px;
+    width: 50px;
+  }
+  button.bonus5 {
+    background-image: url(../../images/brickgold2.png);
+    background-color: white;
+    background-size: cover;
+    height: 50px;
+    width: 50px;
+  }

@@ -10,26 +10,35 @@
 } */
 
 .none{
-  background-image: url(https://cdn2.iconfinder.com/data/icons/outlined-valuable-items/200/minerals_gold-512.png);
+  background-image: url(../../images/brickwall2.png);
   background-size: cover;
   background-color: white;
   height: 50px;
   width: 50px;
-
 }
 .point {
-  /* background-color: green; */
-  /* background-image: url(http://www.iconarchive.com/download/i2597/antialiasfactory/jewelry/Gold-Bullion.ico); */
-  background-image: url(../../images/gold_point_1.png);
+  background-image: url(../../images/brickwall2.png);
   background-size: cover;
   background-color: white;
   height: 50px;
   width: 50px;
 }
-
+.point:hover {
+  background-image: url(../../images/brickgold.png);
+  background-size: cover;
+  background-color: white;
+  height: 50px;
+  width: 50px;
+}
 button.bomb {
-  content:url(https://www.shareicon.net/download/2016/03/04/319587_clanbomber_128x128.png); /* why both? this is the old one*/
-  background-image: url(../../images/gold-bomb-illustration-burning-fuse-shadow-realistic-style-88895335.png);
+  background-image: url(../../images/brickwall2.png);
+  background-color: white;
+  background-size: cover;
+  height: 50px;
+  width: 50px;
+}
+button.bomb:hover {
+  background-image: url(../../images/brickbomb.png);
   background-color: white;
   background-size: cover;
   height: 50px;
@@ -37,8 +46,14 @@ button.bomb {
 }
 
 button.bonus5 {
-  /* content:url(https://www.shareicon.net/download/2016/03/04/319587_clanbomber_128x128.png); */
-  background-image: url(../../images/gold_point_5.jpg);
+  background-image: url(../../images/brickwall2.png);
+  background-color: white;
+  background-size: cover;
+  height: 50px;
+  width: 50px;
+}
+button.bonus5:hover {
+  background-image: url(../../images/brickgold2.png);
   background-color: white;
   background-size: cover;
   height: 50px;

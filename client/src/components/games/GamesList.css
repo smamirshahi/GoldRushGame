@@ -1,3 +1,6 @@
+/* @import url('https://fonts.googleapis.com/css?family=Rye'); */
+
+
 h2 {
   margin-bottom: 16px;
   font-size: 14px;
@@ -17,3 +20,7 @@ h2 {
   padding: 20px;
   width: 60%;
 }
+
+/* body{
+  font-family:'Rye', cursive;
+} */

@@ -111,18 +111,24 @@ class GameDetails extends PureComponent {
 
 
     return (<Paper className="outer-paper">
-      <h1>Game #{game.id}</h1>
+      <div className='topper'>
+      </div>
+      <p className="status">Status: {game.status}</p>
 
-      <p>Status: {game.status}</p>
-      <p>Time: <br></br></p>
-      {game.status === 'started' && <Clock />}
-
-      {/* <p>Score: <br /></p> */}
-      {/* {console.log(difference)} */}
-      <div className={"flex-container1"}>
-       <p className={p1Class.concat(" flex-item1")}> Player1:<br />{game.score1}</p>
-       <p className={p2Class.concat(" flex-item1")}>Player2:<br />{game.score2}</p>
+      
+  
+      <div className="flex-container">
+      <div>
+       <p className={p1Class.concat(" flex-item")}> Player1:<br />{game.score1}</p>
        </div>
+      <div className="countdown">
+      <p>Time: <br></br></p>
+      <div className="countdownClock">
+       {game.status === 'started' && <Clock />}
+       </div>
+      </div>
+       <p className={p2Class.concat(" flex-item")}>Player2:<br />{game.score2}</p>
+       </div >
       {/* {
         game.status === 'started' &&
         player && player.symbol === game.turn &&
