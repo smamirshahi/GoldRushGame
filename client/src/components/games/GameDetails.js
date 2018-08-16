@@ -94,12 +94,12 @@ class GameDetails extends PureComponent {
       {game.status === 'started' && <Clock />}
 
       {/* <p>Score: <br /></p> */}
-      {player1_class = this.player1_class.concat(" ", "flex-item")}
-      {player2_class = this.player2_class.concat(" ", "flex-item")}
+      {/* {player1_class = this.player1_class.concat(" ", "flex-item")}
+      {player2_class = this.player2_class.concat(" ", "flex-item")} */}
       {/* {console.log(difference)} */}
       <div className={"flex-container"}>
-       <p className={player1_class}> Player1:<br />{game.score1}</p>
-       <p className={player2_class}>Player2:<br />{game.score2}</p>
+       <p className={this.player1_class}> Player1:<br />{game.score1}</p>
+       <p className={this.player2_class}>Player2:<br />{game.score2}</p>
        </div>
       {/* {
         game.status === 'started' &&
