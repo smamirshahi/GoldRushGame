@@ -39,7 +39,8 @@
     height: 50px;
     width: 50px;
   }
-  button.bonus5 {
+
+  button.bonus3 {
     background-image: url(../../images/brickdiamond2.png);
     background-color: white;
     background-size: cover;

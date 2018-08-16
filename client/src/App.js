@@ -19,6 +19,9 @@ class App extends Component {
   onPlay() {
     this.sound.play();
   }
+  onPause(){
+    this.sound.pause();
+  }
 
   render() {
     return (
@@ -29,6 +32,7 @@ class App extends Component {
           </nav>
           <main style={{ marginTop: 75 }}>
             {this.onPlay()}
+            {/* <button onClick={this.onPause()}>sound off</button> */}
 
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/logout" component={LogoutPage} />
@@ -36,6 +40,7 @@ class App extends Component {
             <Route exact path="/games" component={GamesList} />
             <Route exact path="/games/:id" component={GameDetails} />
             <Route exact path="/" render={() => <Redirect to="/games" />} />
+            
           </main>
         </div>
       </Router>
