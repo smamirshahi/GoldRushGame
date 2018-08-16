@@ -16,3 +16,8 @@
 .equal_score {
   background: yellow;
 }
+
+.flex-container {
+  display: flex;
+  flex-direction: row
+}

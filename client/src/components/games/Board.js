@@ -1,5 +1,5 @@
 import React from 'react'
-import './Board.css'
+import './Board2.css'
 // import {score, bomb} from '../../actions/games'
 
 

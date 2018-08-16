@@ -66,16 +66,17 @@ class GameDetails extends PureComponent {
 
     if (game === null || users === null) return 'Loading...'
     if (!game) return 'Not found'
-
+    let p1Class
+    let p2Class
     if ((game.score1 > game.score2)) {
-      this.player1_class = "higher_score"
-      this.player2_class = "lower_score"
+      p1Class = "higher_score"
+      p2Class = "lower_score"
     } else if (game.score1 < game.score2) {
-      this.player1_class = "lower_score"
-      this.player2_class = "higher_score"
+      p1Class = "lower_score"
+      p2Class = "higher_score"
     } else {
-      this.player1_class = "equal_score"
-      this.player2_class = "equal_score"
+      p1Class = "equal_score"
+      p2Class = "equal_score"
     }
 
 
@@ -90,17 +91,17 @@ class GameDetails extends PureComponent {
       <h1>Game #{game.id}</h1>
 
       <p>Status: {game.status}</p>
-      <p>Time: <br></br></p>
-      {game.status === 'started' && <Clock />}
-
-      {/* <p>Score: <br /></p> */}
-      {/* {player1_class = this.player1_class.concat(" ", "flex-item")}
-      {player2_class = this.player2_class.concat(" ", "flex-item")} */}
-      {/* {console.log(difference)} */}
-      <div className={"flex-container"}>
-       <p className={this.player1_class}> Player1:<br />{game.score1}</p>
-       <p className={this.player2_class}>Player2:<br />{game.score2}</p>
+  
+      <div className="flex-container">
+      <div>
+       <p className={p1Class.concat(" flex-item")}> Player1:<br />{game.score1}</p>
        </div>
+      <div>
+      <p>Time: <br></br></p>
+       {game.status === 'started' && <Clock />}
+      </div>
+       <p className={p2Class.concat(" flex-item")}>Player2:<br />{game.score2}</p>
+       </div >
       {/* {
         game.status === 'started' &&
         player && player.symbol === game.turn &&
