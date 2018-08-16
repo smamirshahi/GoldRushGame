@@ -46,12 +46,15 @@ export class Game extends BaseEntity {
 
   async changeBoard() {
     const emptyBoard = [
-      [0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
     ]
 
     function randomNumber(length1, length2) {
@@ -60,7 +63,7 @@ export class Game extends BaseEntity {
     }
 
     let array1 = new Array()
-    for (let i = 0; i < Math.min(this.gameRound, emptyBoard.length * emptyBoard[0].length); i++) {
+    for (let i = 0; i < Math.min(this.gameRound * 2, emptyBoard.length * emptyBoard[0].length); i++) {
       let newArray = randomNumber(emptyBoard.length, emptyBoard[0].length)
       array1.push(newArray)
     }
@@ -74,7 +77,7 @@ export class Game extends BaseEntity {
       if (element.toString() !== randScore1.toString()) {
         emptyBoard[element[0]][element[1]] = -2
         if (this.gameRound % 7 === 0) {
-          emptyBoard[randScore5[0]][randScore5[1]] = 5
+          emptyBoard[randScore5[0]][randScore5[1]] = 3
         }
       }
     })
