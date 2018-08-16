@@ -4,3 +4,15 @@
   padding: 20px;
   width: 60%;
 }
+
+.higher_score {
+  background: green;
+}
+
+.lower_score {
+  background: red;
+}
+
+.equal_score {
+  background: yellow;
+}

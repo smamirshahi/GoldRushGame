@@ -1,0 +1,15 @@
+.bold_class {
+    /* background: purple; */
+    font-size: 2em;
+    height: 50px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.normal_class {
+    /* background: yellow; */
+    font-size: 1.5em;
+    height: 50px;
+    text-align: center;
+    vertical-align: middle;
+}

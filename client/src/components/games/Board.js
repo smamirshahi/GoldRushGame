@@ -6,6 +6,7 @@ import './Board.css'
 const renderCel = (makeMove, rowIndex, cellIndex, symbol, hasTurn, classname) => {
   if (symbol === 1) {classname = "point"}
   else if (symbol === -2){classname = "bomb"}
+  else if (symbol === 5){classname = "bonus5"}
   else classname = "none"
 
   

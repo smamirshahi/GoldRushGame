@@ -26,9 +26,7 @@ export default class GameController {
   async createGame(
     @CurrentUser() user: User,
     @Body() game1: Game
-    // @Body() game: Game
   ) {
-    // console.log(`created user ${user.firstName}`)
     await game1.changeBoard()
     const entity = await game1.save()
 
@@ -62,8 +60,6 @@ export default class GameController {
 
     game.status = 'started'
     game.createdAt = Date.now().toString()
-    // @CreateDateColumn()
-    // @UpdateDateColumn()
     await game.save()
 
     const player = await Player.create({
@@ -88,9 +84,7 @@ export default class GameController {
   async updateGame(
     @CurrentUser() user: User,
     @Param('id') gameId: number,
-    // @UpdateDateColumn()
     @Body() update: Partial<Game>
-    // @Body() score: string | number
   ) {
     const game = await Game.findOneById(gameId)
     if (!game) throw new NotFoundError(`Game does not exist`)
@@ -99,55 +93,23 @@ export default class GameController {
 
     if (!player) throw new ForbiddenError(`You are not part of this game`)
     if (game.status !== 'started') throw new BadRequestError(`The game is not started yet`)
-    // if (player.symbol !== game.turn) throw new BadRequestError(`It's not your turn`)
-    // if (!isValidTransition(player.symbol, game.board, update.board)) {
-    //   throw new BadRequestError(`Invalid move`)
-    // }    
-
-    // const winner = calculateWinner(update.board)
-    // if (winner) {
-    //   game.winner = winner
-    //   game.status = 'finished'
-    // }
-    // else if (finished(update.board)) {
-    //   game.status = 'finished'
-    // }
-    // else {
-    //   game.turn = player.symbol === 'x' ? 'o' : 'x'
-    // }
-    // console.log(`you pressed a button with the value of: ${update.score1}`)
-    // console.log("number: ", update.score1 + 1)
-    // console.log("number2: ", game.score1 + 1)
     game.updatedAt = Date.now() - Number(game.createdAt)
-    if (game.updatedAt < 3000000) {
+    if (game.updatedAt < 30000) {
       game.clickedBy = player.playerNumber
       game.gameRound = game.gameRound + 1
       if (!!update.score1 && game.clickedBy.indexOf("P1") === 0) {
-        // console.log(typeof(game.score1))
         game.score1 = game.score1 + update.score1
-        // console.log(game.score1)
       }
       if (!!update.score1 && game.clickedBy.indexOf("P2") === 0) {
-        // console.log(typeof(game.score2))
         game.score2 = game.score2 + update.score1
-        // console.log(update.score1)
       }
-    }
-    if (game.updatedAt > 3000000) {
+    } else {
       const winner = calculateWinner(game.score1, game.score2)
       game.winner = winner
       game.status = 'finished'
     }
 
-    // console.log(`game clicked by ${game.clickedBy.indexOf("P1")}`)
-    // console.log(`game clicked by ${game.clickedBy.indexOf("P2")}`)
-    // console.log(game.clickedBy)
-    // console.log(`game clicked by ${game.clickedBy}`)
-    // console.log(`clicked person ${user.firstName}`)
-    // console.log(`clicked person ${player.playerNumber}`)
-    // game.playerNumber = user.firstName;
     await game.changeBoard()
-    // game.board = update.board // update the board
     await game.save()
 
     io.emit('action', { //telling the frontend to update the game
