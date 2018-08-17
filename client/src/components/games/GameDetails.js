@@ -121,8 +121,6 @@ class GameDetails extends PureComponent {
     return (<Paper className="outer-paper">
       <div className='topper'>
       </div>
-      <p className="status">Status: {game.status}</p>
-
       {game.status === 'pending' &&
         <Introduction />
       }
@@ -146,6 +144,7 @@ class GameDetails extends PureComponent {
           </div>
         </div>
       </div >
+      </div>}
       {
         game.status === 'pending' &&
         game.players.map(p => p.userId).indexOf(userId) === -1 &&           

@@ -85,22 +85,31 @@
 .flex-container2 {
   display: flex;
   flex-direction: row;
-  justify-content: space-between
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-align: center;
+  width: 100%;
+  height:auto;
 }
 
-
+.flex-item2 img{
+  width: 100%;
+  height: auto;
+}
 .mainBoard {
   /* background-size: contain; */
   /* background-position: center; */
   display: block;
-  margin: auto;
+  margin:auto;
+  width: 60%;
+  height:auto;
   margin-bottom: 20px;
   border: 1px solid black;
 }
 
 #introductionTitle {
   font-size: 3em;
-  margin: 30px;
+
   text-align: center;
   color: green;
 }
@@ -116,6 +125,8 @@
   background: yellow;
   font-family:'Rye', cursive;
   font-size: 2em;
+  display: block;
+  margin: auto;
   /* text-align: center; */
   /* margin: auto; */
 }
