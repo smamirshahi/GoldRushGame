@@ -8,3 +8,7 @@ body {
   font-family: 'Rye', cursive;
 }
 
+.header-logo{
+  width: 200px;
+  height: 70px
+}

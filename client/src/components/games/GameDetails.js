@@ -113,28 +113,25 @@ class GameDetails extends PureComponent {
     return (<Paper className="outer-paper">
       <div className='topper'>
       </div>
-      <p className="status">Status: {game.status}</p>
-
-      
-  
       <div className="flex-container">
-      <div>
-       <p className={p1Class.concat(" flex-item")}> Player1:<br />{game.score1}</p>
-       </div>
-      <div className="countdown">
-      <p>Time: <br></br></p>
-      <div className="countdownClock">
-       {game.status === 'started' && <Clock />}
-       </div>
-      </div>
-       <p className={p2Class.concat(" flex-item")}>Player2:<br />{game.score2}</p>
-       </div >
-      {/* {
-        game.status === 'started' &&
-        player && player.symbol === game.turn &&
-        <div>It's your turn!</div>
-      } */}
+      <div className={p1Class.concat(" flex-item")}>Player1:<br/>
+          <div className='score2'>
+            {game.score1}
+          </div>
+        </div>
+        <p className="status">Status: {game.status}
+          <p className="countdown">Time:</p>
+          <div className="countdownClock">
+          {game.status !== 'pending' && <Clock {...this.props}/>}
+          </div>
+        </p>  
 
+        <div className={p2Class.concat(" flex-item")}>Player2:<br/>
+          <div className='score2'>
+            {game.score2}
+          </div>
+        </div>
+      </div >
       {
         game.status === 'pending' &&
         game.players.map(p => p.userId).indexOf(userId) === -1 &&

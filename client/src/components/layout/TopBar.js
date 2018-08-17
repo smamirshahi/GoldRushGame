@@ -8,18 +8,22 @@ import {userId} from '../../jwt'
 import {connect} from 'react-redux'
 import AccountIcon from 'material-ui-icons/AccountBox'
 
+
 const TopBar = (props) => {
   const { location, history, user } = props
 
   return (
-    <AppBar position="absolute" style={{zIndex:10}}>
+    <AppBar position="absolute" style={{zIndex:10, backgroundColor:'#f9e54f'}}>
       <Toolbar>
-        <Typography variant="title" color="inherit" style={{flex: 1}}>
-        GOLD RUSH!
+        <Typography variant="title" color="inherit" style={{flex: 1, width: '200px', fontFamily:'Rye', fontSize: '30px'}} >
+          <img
+            src={require(`../../images/goldrush.png`)}
+            className="header-logo"
+          />
         </Typography>
         {
           user &&
-          <Button color="inherit"><AccountIcon /> { user.firstName }</Button>
+          <Button color="white" style={{flex: 1, fontFamily:'Rye', fontSize: '0.7em'}}><AccountIcon /> { user.firstName }</Button>
         }
 
         {
@@ -32,7 +36,7 @@ const TopBar = (props) => {
         }
         {
           location.pathname.indexOf('games/') > 0 &&
-          <Button color="inherit" onClick={() => history.push('/games')}>All Games</Button>
+          <Button style={{flex: 1, fontFamily:'Rye', fontSize: '0.9em'}}color="inherit" onClick={() => history.push('/games')}>All Games</Button>
         }
         {
           /games$/.test(location.pathname) &&
