@@ -121,8 +121,6 @@ class GameDetails extends PureComponent {
     return (<Paper className="outer-paper">
       <div className='topper'>
       </div>
-      {/* <p className="status">Status: {game.status}</p> */}
-
       {game.status === 'pending' &&
         <Introduction />
       }
