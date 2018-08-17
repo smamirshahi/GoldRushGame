@@ -7,11 +7,16 @@
 
 .status{
   text-align: center;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .countdownClock{
-  height: 100px;
-  width: 100px;
-  text-align: center;
+  margin-top: -20px;
+
+  /* height: 100px;
+  width: 100px; */
+  /* text-align: center; */
 }
 .countdown{
   text-align: center;
@@ -22,22 +27,31 @@
   background-image: url(../../images/facesmile.ico);
   background-size:68%;
   background-repeat: no-repeat;
-  background-position-y: 30px;
+  background-position: center;
+  background-position-y: 50px;
+  padding-bottom:30px;
   height: 100px;
   width: 100px;
   text-align: center
-  
+
 }
 
 .lower_score {
   background: white;
   background-image: url(../../images/face.ico);
   background-size:68%;
+  background-position: center;
   background-repeat: no-repeat;
-  background-position-y: 30px;
+  background-position-y: 50px;
+  padding-bottom:30px;
   height: 100px;
   width: 100px;
-  text-align: center}
+  text-align: center; 
+}
+.score2{
+  font-size: 30px;
+
+}
 
 .equal_score {
   background: white;
@@ -45,19 +59,22 @@
   background-size:75%;
   background-position-x: 13px;
   background-repeat: no-repeat;
-  background-position-y: 30px;
+  background-position-y: 50px;
+  padding-bottom:30px;
   height: 100px;
   width: 100px;
   text-align: center
 }
 
 .flex-container {
+  margin-bottom:-30px;
   display: flex;
   flex-direction: row;
   justify-content: space-between
 }
 
 .topper{
+  margin: -20px;
   background-image: url(../../images/goldrushfire.gif);
   background-size:contain;
   background-position: center;

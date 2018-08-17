@@ -34,8 +34,8 @@ class Clock extends PureComponent {
         else this.clock_class = "super_clock".concat(" general_clock", " blink_me")
 
         return (
-            <div className = {this.clock_class}>
-                {this.state.time}
+             <div className = {this.clock_class}>
+               {this.state.time}
             </div>
         )
     }
