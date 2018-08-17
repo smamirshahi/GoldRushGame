@@ -6,18 +6,21 @@ import { getUsers } from '../../actions/users'
 import { userId } from '../../jwt'
 import Paper from 'material-ui/Paper'
 import Board from './Board'
+import Introduction from './Introduction'
 import './GameDetails.css'
 import { score, bomb } from '../../actions/games'
 import Clock from './Clock'
 import coinSound from '../../sound/coin.mp3'
 import explosionSound from '../../sound/explosion.mp3'
 import minningSound from '../../sound/minning.mp3'
+import diamondSound from '../../sound/diamond.mp3'
 
 
 class GameDetails extends PureComponent {
   coinEffect = new Audio(coinSound)
   explosionEffect = new Audio(explosionSound)
   minningEffect = new Audio(minningSound)
+  diamondEffect = new Audio(diamondSound)
 
   onCoinPlay() {
     this.coinEffect.play();
@@ -29,6 +32,10 @@ class GameDetails extends PureComponent {
 
   onMinningPlay() {
     this.minningEffect.play();
+  }
+
+  onDiamondPlay() {
+    this.diamondEffect.play();
   }
 
   state = {}
@@ -69,9 +76,10 @@ class GameDetails extends PureComponent {
   makeMove = (value) => {
     const gameId = this.props.game.id
     // console.log(value)
-    if (value === 0) {this.onMinningPlay()}
-    if (value === 1) {this.onCoinPlay()}
-    if (value === -2) {this.onExplosionPlay()}
+    if (value === 0) { this.onMinningPlay() }
+    if (value === 1) { this.onCoinPlay() }
+    if (value === -2) { this.onExplosionPlay() }
+    if (value === 3) { this.onDiamondPlay() }
 
     if (value === 0) return
     else { this.props.score(gameId, value) }
@@ -113,6 +121,12 @@ class GameDetails extends PureComponent {
     return (<Paper className="outer-paper">
       <div className='topper'>
       </div>
+      <p className="status">Status: {game.status}</p>
+
+      {game.status === 'pending' &&
+        <Introduction />
+      }
+      {game.status !== 'pending' && <div>
       <div className="flex-container">
       <div className={p1Class.concat(" flex-item")}>Player1:<br/>
           <div className='score2'>
@@ -134,8 +148,9 @@ class GameDetails extends PureComponent {
       </div >
       {
         game.status === 'pending' &&
-        game.players.map(p => p.userId).indexOf(userId) === -1 &&
-        <button onClick={this.joinGame}>Join Game</button>
+        game.players.map(p => p.userId).indexOf(userId) === -1 &&           
+          <button onClick={this.joinGame} className={"JoinButton"}>Join Game</button>
+        
       }
 
       {
@@ -149,22 +164,6 @@ class GameDetails extends PureComponent {
         game.status !== 'pending' &&
         <Board board={game.board} makeMove={this.makeMove} />
       }
-
-      <p> Introduction </p>
-      <div className="flex-container">
-      {/* src={require('/one.jpeg')} */}
-        <img className="flex-item" src={require("../../images/gold-bomb-illustration-burning-fuse-shadow-realistic-style-88895335.png")} alt="coin"></img>
-        <section className="flex-item">This has 1 point</section>
-      </div>
-      <div>
-        <p>This has 3 point</p>
-      </div>
-      <div>
-        <p>This has -2 point</p>
-      </div>
-      <div>
-        <p>You need to click faster than your opponent. The cells randomly check after each click</p>
-      </div>
 
     </Paper>)
   }

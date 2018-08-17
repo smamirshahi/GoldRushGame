@@ -10,9 +10,9 @@ class Clock extends PureComponent {
         const futureTime = Date.now() / 100 + 30*10;
         const x = setInterval(() => {
             let now = Date.now() / 100
-            let difference = Math.floor(Math.abs(now - futureTime)) / 10
-            difference === 0 && clearInterval(x)
-            difference === 0 && console.log("gameover")
+            let difference = (Math.floor(futureTime - now) / 10).toFixed(1)
+            difference <= 0 && clearInterval(x)
+            difference <= 0 && console.log("gameover")
             // console.log(this)
             this.setState(
                 { time: difference }
