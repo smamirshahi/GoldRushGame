@@ -63,7 +63,7 @@ export class Game extends BaseEntity {
     }
 
     let array1 = new Array()
-    for (let i = 0; i < Math.min(this.gameRound * 2, emptyBoard.length * emptyBoard[0].length); i++) {
+    for (let i = 0; i < Math.min(Math.floor(this.gameRound * 2.5), emptyBoard.length * emptyBoard[0].length); i++) {
       let newArray = randomNumber(emptyBoard.length, emptyBoard[0].length)
       array1.push(newArray)
     }

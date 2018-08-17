@@ -64,3 +64,41 @@
   background-repeat: no-repeat;
   height: 140px;
 }
+
+.flex-container2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between
+}
+
+
+.mainBoard {
+  /* background-size: contain; */
+  /* background-position: center; */
+  display: block;
+  margin: auto;
+  margin-bottom: 20px;
+  border: 1px solid black;
+}
+
+#introductionTitle {
+  font-size: 3em;
+  margin: 30px;
+  text-align: center;
+  color: green;
+}
+
+#introductionDescription {
+  font-size: 2em;
+  margin: 30px;
+  text-align: center;
+  color: red;
+}
+
+.JoinButton {
+  background: yellow;
+  font-family:'Rye', cursive;
+  font-size: 2em;
+  /* text-align: center; */
+  /* margin: auto; */
+}

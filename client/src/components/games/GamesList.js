@@ -8,6 +8,7 @@ import Paper from 'material-ui/Paper'
 import Card, { CardActions, CardContent } from 'material-ui/Card'
 import Typography from 'material-ui/Typography'
 import './GamesList.css'
+import Introduction from './Introduction'
 
 
 class GamesList extends PureComponent {
@@ -71,6 +72,7 @@ class GamesList extends PureComponent {
 
       <div>
         {games.map(game => this.renderGame(game))}
+
       </div>
     </Paper>)
   }

@@ -23,6 +23,8 @@
     background-color: white;
     height: 50px;
     width: 50px;
+    padding: 0;
+    border: none;
   }
   .point {
     background-image: url(../../images/brickgold.png);
@@ -30,6 +32,8 @@
     background-color: white;
     height: 50px;
     width: 50px;
+    padding: 0;
+    border: none;
   }
 
   button.bomb {
@@ -38,6 +42,8 @@
     background-size: cover;
     height: 50px;
     width: 50px;
+    padding: 0;
+    border: none;
   }
 
   button.bonus3 {
@@ -46,4 +52,6 @@
     background-size: cover;
     height: 50px;
     width: 50px;
+    padding: 0;
+    border: none;
   }
