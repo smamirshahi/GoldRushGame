@@ -41,6 +41,7 @@ class GamesList extends PureComponent {
         </CardContent>
         <CardActions>
           <Button
+            style={{ fontFamily:'Rye', fontSize: '0.9em'}}
             size="small"
             onClick={() => history.push(`/games/${game.id}`)}
           >
@@ -61,6 +62,7 @@ class GamesList extends PureComponent {
 
     return (<Paper className="outer-paper">
       <Button
+        style={{flex: 1, fontFamily:'Rye', fontSize: '0.9em'}}
         color="primary"
         variant="raised"
         onClick={createGame}
