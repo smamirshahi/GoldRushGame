@@ -18,21 +18,21 @@ const TopBar = (props) => {
         <Typography variant="title" color="black" style={{flex: 1, width: '200px', fontFamily:'Rye', fontSize: '30px'}} >
           <img
             src={require(`../../images/goldrush.png`)}
-            className="header-logo"
+            className="header-logo" alt=""
           />
         </Typography>
         {
           user &&
-          <Button color="black" style={{flex: 1, fontFamily:'Rye', fontSize: '0.7em'}}><AccountIcon /> { user.firstName }</Button>
+          <Button color="black" style={{"flex": "1", "fontFamily":"Rye", "fontSize": "0.9em"}}><AccountIcon /> { user.firstName }</Button>
         }
 
         {
           location.pathname.indexOf('signup') > 0 &&
-          <Button color="black" onClick={() => history.push('/login')}>Login</Button>
+          <Button color="black" style={{"flex": "1", "fontFamily":"Rye", "fontSize": "0.9em"}} onClick={() => history.push('/login')}>Login</Button>
         }
         {
           location.pathname.indexOf('login') > 0 &&
-          <Button color="black" onClick={() => history.push('/signup')}>Sign up</Button>
+          <Button color="black" style={{"flex": "1", "fontFamily":"Rye", "fontSize": "0.9em"}} onClick={() => history.push('/signup')}>Sign up</Button>
         }
         {
           location.pathname.indexOf('games/') > 0 &&
@@ -40,7 +40,7 @@ const TopBar = (props) => {
         }
         {
           /games$/.test(location.pathname) &&
-          <Button color="black" onClick={() => history.push('/logout')}>Log out</Button>
+          <Button color="black" style={{"flex": "1", "fontFamily":"Rye", "fontSize": "0.9em"}} onClick={() => history.push('/logout')}>Log out</Button>
         }
       </Toolbar>
     </AppBar>

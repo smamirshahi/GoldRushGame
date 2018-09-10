@@ -8,7 +8,7 @@ import Paper from 'material-ui/Paper'
 import Card, { CardActions, CardContent } from 'material-ui/Card'
 import Typography from 'material-ui/Typography'
 import './GamesList.css'
-import Introduction from './Introduction'
+// import Introduction from './Introduction'
 
 
 class GamesList extends PureComponent {

@@ -1,6 +1,6 @@
 import {
   JsonController, Authorized, CurrentUser, Post, Param, BadRequestError, HttpCode, NotFoundError, ForbiddenError, Get,
-  Body, Patch, BodyParam
+  Body, Patch/* , BodyParam */
 } from 'routing-controllers'
 import User from '../users/entity'
 import { Game, Player, /* Board */ } from './entities'
