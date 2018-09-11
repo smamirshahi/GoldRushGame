@@ -3,12 +3,12 @@
 This repo contains a frontend and backend for a multiplayer Gold Rush game. It uses Typescript, Koa, routing-controllers and TypeORM in the backend and React/Redux in the frontend. The backend exposes a REST API but also sends messages over websockets using SocketIO. 
 
 ## Demo
-<a href="client/src/images/demo.gif"><img src="https://i.imgflip.com/2hoat5.gif" title="made at imgflip.com"/></a>
+<a href="client/src/images/demo.gif"></a>
 [A demo of our game](client/src/images/demo.gif)
 
 ## Playing the game
 1. download the repo
-2. create a docker ()
+2. create a docker
 3. In the terminal, go to the client folder and run the React app "yarn start"
 4. At the very beginning, you need to comment out part of the Player entity in the /server/src/games/entities:
     @Column()
