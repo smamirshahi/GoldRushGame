@@ -3,8 +3,9 @@
 This repo contains a frontend and backend for a multiplayer Gold Rush game. It uses Typescript, Koa, routing-controllers and TypeORM in the backend and React/Redux in the frontend. The backend exposes a REST API but also sends messages over websockets using SocketIO. 
 
 ## Demo
-<a href="client/src/images/demo.gif"></a>
-[A demo of our game](client/src/images/demo.gif)
+<a href="https://imgflip.com/gif/2hoat5"><img src="https://i.imgflip.com/2hoat5.gif" title="made at imgflip.com"/></a>
+
+[A demo of our game](client/src/images/GoldRushDemo.mp4)
 
 ## Playing the game
 1. download the repo
