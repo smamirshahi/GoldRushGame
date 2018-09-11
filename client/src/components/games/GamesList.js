@@ -8,8 +8,6 @@ import Paper from 'material-ui/Paper'
 import Card, { CardActions, CardContent } from 'material-ui/Card'
 import Typography from 'material-ui/Typography'
 import './GamesList.css'
-// import Introduction from './Introduction'
-
 
 class GamesList extends PureComponent {
   componentWillMount() {
@@ -42,7 +40,7 @@ class GamesList extends PureComponent {
         </CardContent>
         <CardActions>
           <Button
-            style={{ fontFamily:'Rye', fontSize: '0.9em'}}
+            style={{ fontFamily: 'Rye', fontSize: '0.9em' }}
             size="small"
             onClick={() => history.push(`/games/${game.id}`)}
           >
@@ -63,7 +61,7 @@ class GamesList extends PureComponent {
 
     return (<Paper className="outer-paper">
       <Button
-        style={{flex: 1, fontFamily:'Rye', fontSize: '0.9em'}}
+        style={{ flex: 1, fontFamily: 'Rye', fontSize: '0.9em' }}
         color="primary"
         variant="raised"
         onClick={createGame}
