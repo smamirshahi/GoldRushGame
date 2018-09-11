@@ -13,9 +13,9 @@ This repo contains a frontend and backend for a multiplayer Gold Rush game. It u
 3. In the terminal, go to the client folder and run the React app `yarn start`
 4. At the very beginning, you need to comment out part of the Player entity in the `/server/src/games/entities`:
 
-    *@Column()
+    *@Column()*
 
-    userId: number*
+    *userId: number*
 5. In another terminal, go to the server folder and run `yarn watch`
 6. In the third terminal, go to the server folder and run `nodemon .`
 7. After the tables are created, uncomment part 4.
