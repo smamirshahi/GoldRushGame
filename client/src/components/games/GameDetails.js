@@ -45,33 +45,9 @@ class GameDetails extends PureComponent {
       if (this.props.game === null) this.props.getGames()
       if (this.props.users === null) this.props.getUsers()
     }
-    // const futureTime = new Date().getTime() /1000 + 30;
-
-    // this.state =  setInterval(function(){
-    //   let now = new Date().getTime() /1000
-    //   let difference = Math.floor(now - futureTime)
-    //     if (difference ===0){clearInterval(x)}
-    //     return  { time: difference }
-    //     // console.log(difference)
-
-    //   }, 1000)
-
   }
 
   joinGame = () => this.props.joinGame(this.props.game.id)
-
-  // makeMove = (toRow, toCell) => {
-  //   const {game, updateGame} = this.props
-
-  //   const board = game.board.map(
-  //     (row, rowIndex) => row.map((cell, cellIndex) => {
-  //       if (rowIndex === toRow && cellIndex === toCell) return game.turn
-  //       else return cell
-  //     })
-  //   )
-  //   updateGame(game.id, board)
-  // }
-
 
   makeMove = (value) => {
     const gameId = this.props.game.id
@@ -110,9 +86,6 @@ class GameDetails extends PureComponent {
       p2Class = "equal_score"
     }
 
-
-    // const player = game.players.find(p => p.userId === userId)
-
     const winner = game.players
       .filter(p => p.symbol === game.winner)
       .map(p => p.userId)[0]
@@ -125,31 +98,31 @@ class GameDetails extends PureComponent {
         <Introduction />
       }
       {game.status !== 'pending' && <div>
-      <div className="flex-container">
-      <div className={p1Class.concat(" flex-item")}>Player1:<br/>
-          <div className='score2'>
-            {game.score1}
+        <div className="flex-container">
+          <div className={p1Class.concat(" flex-item")}>Player1:<br />
+            <div className='score2'>
+              {game.score1}
+            </div>
           </div>
-        </div>
-        <p className="status">Status: {game.status}
-          <p className="countdown">Time:</p>
-          <div className="countdownClock">
-          {game.status !== 'pending' && <Clock {...this.props}/>}
-          </div>
-        </p>  
+          <p className="status">Status: {game.status}
+            <p className="countdown">Time:</p>
+            <div className="countdownClock">
+              {game.status !== 'pending' && <Clock {...this.props} />}
+            </div>
+          </p>
 
-        <div className={p2Class.concat(" flex-item")}>Player2:<br/>
-          <div className='score2'>
-            {game.score2}
+          <div className={p2Class.concat(" flex-item")}>Player2:<br />
+            <div className='score2'>
+              {game.score2}
+            </div>
           </div>
-        </div>
-      </div >
+        </div >
       </div>}
       {
         game.status === 'pending' &&
-        game.players.map(p => p.userId).indexOf(userId) === -1 &&           
-          <button onClick={this.joinGame} className={"JoinButton"}>Join Game</button>
-        
+        game.players.map(p => p.userId).indexOf(userId) === -1 &&
+        <button onClick={this.joinGame} className={"JoinButton"}>Join Game Player 2</button>
+
       }
 
       {

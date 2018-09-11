@@ -1,21 +1,11 @@
 import {
   JsonController, Authorized, CurrentUser, Post, Param, BadRequestError, HttpCode, NotFoundError, ForbiddenError, Get,
-  Body, Patch, BodyParam
+  Body, Patch
 } from 'routing-controllers'
 import User from '../users/entity'
-import { Game, Player, /* Board */ } from './entities'
-import {/* IsBoard, */ /* isValidTransition, */ calculateWinner, /* finished */ } from './logic'
-// import { Validate } from 'class-validator'
+import { Game, Player } from './entities'
+import { calculateWinner } from './logic'
 import { io } from '../index'
-// import { UpdateDateColumn, CreateDateColumn } from 'typeorm';
-
-// class GameUpdate {
-
-// @Validate(IsBoard, {
-//   message: 'Not a valid board'
-// })
-// board: Board
-// }
 
 @JsonController()
 export default class GameController {
@@ -72,46 +62,16 @@ export default class GameController {
       type: 'UPDATE_GAME',
       payload: await Game.findOneById(game.id)
     })
-    
-    
-
-    // function myFunc(game1, score1, score2) {
-    //   const win = calculateWinner(score1, score2)
-    //   console.log(win)
-    //   // console.log(winner)
-    //   game1.winner = win
-    //   game1.status = 'finished'
-    //   console.log(game1.status)
-    //   return game1.save()
-    //   // console.log(game1.status)
-    // }
-
-    // setTimeout(myFunc, 10000, game, game.score1, game.score2)
-
-    // const player = await Player.create({
-    //   game,
-    //   user,
-    //   playerNumber: 'P2'
-    // }).save()
-
-    // io.emit('action', {
-    //   type: 'UPDATE_GAME',
-    //   payload: await Game.findOneById(game.id)
-    // })
 
     return player
   }
 
   @Authorized() // update the game after user clicks
-  // the reason that we're using patch here is because this request is not idempotent
-  // http://restcookbook.com/HTTP%20Methods/idempotency/
-  // try to fire the same requests twice, see what happens
   @Patch('/games/:id([0-9]+)')
   async updateGame(
     @CurrentUser() user: User,
     @Param('id') gameId: number,
     @Body() update: Partial<Game>
-    // @BodyParam("score1") update
   ) {
     const game = await Game.findOneById(gameId)
     if (!game) throw new NotFoundError(`Game does not exist`)
@@ -130,7 +90,7 @@ export default class GameController {
       if (!!update.score1 && game.clickedBy.indexOf("P2") === 0) {
         game.score2 = game.score2 + update.score1
       }
-    } 
+    }
     else {
       const winner = calculateWinner(game.score1, game.score2)
       game.winner = winner
@@ -140,7 +100,7 @@ export default class GameController {
     await game.changeBoard()
     await game.save()
 
-    io.emit('action', { //telling the frontend to update the game
+    io.emit('action', {
       type: 'UPDATE_GAME',
       payload: game
     })

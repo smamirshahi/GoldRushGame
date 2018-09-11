@@ -2,21 +2,12 @@
     height: 100px;
     width: 100px;
   }
-  
-  /* button {
-    height: 100px;
-    width: 100px;
-    background-color: white
-  } */
-/* body{
-      display: flex;
-      justify-content: center
-  } */
+
 .row{
        display: flex;
        justify-content: center;
-
 }
+
   .none{
     background-image: url(../../images/brickwall2.png);
     background-size: cover;
@@ -26,6 +17,7 @@
     padding: 0;
     border: none;
   }
+  
   .point {
     background-image: url(../../images/brickgold.png);
     background-size: cover;

@@ -4,7 +4,7 @@ export default class Introduction extends PureComponent {
   render() {
     return (<div>
 
-        <p id={"introductionDescription"}>Rush for the Gold! But be aware of the dynamite!</p>
+      <p id={"introductionDescription"}>Rush for the Gold! But be aware of the dynamite!</p>
 
       <div className="flex-container2">
         <div className="flex-item2">
@@ -21,26 +21,8 @@ export default class Introduction extends PureComponent {
         </div>
       </div>
       <img src={require("../../images/board2.png")} alt="board" className={"mainBoard"}></img>
-      
 
     </div>
-    )}
+    )
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,6 +1,6 @@
-# Tic Tac Toe Server
+# Gold Rush Server
 
-This is a server for playing a multiplayer Tic Tac Toe game. 
+This is a server for playing a multiplayer Gold Rush game. 
 
 It has these endpoints:
 
@@ -10,7 +10,9 @@ It has these endpoints:
 * `POST /games/:id/players`: join an existing game
 * `PATCH /games/:id`: update an existing game
 * `GET /games`: list all games
+* `GET /games/:id`: get a game
 * `GET /users`: list all users
+* `GET /users/:id`: get a user
 
 ## Running
 
@@ -19,4 +21,3 @@ It has these endpoints:
 * Compile the app (Typescript > Javascript) using `yarn compile` (during development you can use `yarn watch`)
 * `yarn start`
 
-You can run the tests with `yarn test`. Currently they only cover the game logic. 

@@ -39,8 +39,6 @@ export class Game extends BaseEntity {
   @Column('text', { default: 'pending' })
   status: Status
 
-  // this is a relation, read more about them here:
-  // http://typeorm.io/#/many-to-one-one-to-many-relations
   @OneToMany(_ => Player, player => player.game, { eager: true })
   players: Player[]
 
@@ -72,7 +70,7 @@ export class Game extends BaseEntity {
     emptyBoard[randScore1[0]][randScore1[1]] = 1
 
     let randScore5 = randomNumber(emptyBoard.length, emptyBoard[0].length)
-  
+
     array1.map(element => {
       if (element.toString() !== randScore1.toString()) {
         emptyBoard[element[0]][element[1]] = -2

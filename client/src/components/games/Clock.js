@@ -7,7 +7,7 @@ class Clock extends PureComponent {
 
     componentDidMount = () => {
         // const status = this.props.game.status    
-        const futureTime = Date.now() / 100 + 30*10;
+        const futureTime = Date.now() / 100 + 30 * 10;
         const x = setInterval(() => {
             let now = Date.now() / 100
             let difference = (Math.floor(futureTime - now) / 10).toFixed(1)
@@ -20,10 +20,9 @@ class Clock extends PureComponent {
         }, 100)
     }
 
-
     render() {
         let time = this.state.time
-        if (Math.floor(time % 10) === 0 || Math.floor(time % 10) === 1 || Math.floor(time % 10) === 9 ) {
+        if (Math.floor(time % 10) === 0 || Math.floor(time % 10) === 1 || Math.floor(time % 10) === 9) {
             this.clock_class = "bold_class"
         } else {
             this.clock_class = "normal_class"
@@ -34,8 +33,8 @@ class Clock extends PureComponent {
         else this.clock_class = "super_clock".concat(" general_clock", " blink_me")
 
         return (
-             <div className = {this.clock_class}>
-               {this.state.time}
+            <div className={this.clock_class}>
+                {this.state.time}
             </div>
         )
     }

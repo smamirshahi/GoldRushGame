@@ -1,7 +1,7 @@
 import * as request from 'superagent'
-import {baseUrl} from '../constants'
-import {logout} from './users'
-import {isExpired} from '../jwt'
+import { baseUrl } from '../constants'
+import { logout } from './users'
+import { isExpired } from '../jwt'
 
 export const ADD_GAME = 'ADD_GAME'
 export const UPDATE_GAME = 'UPDATE_GAME'
@@ -10,7 +10,6 @@ export const JOIN_GAME_SUCCESS = 'JOIN_GAME_SUCCESS'
 export const UPDATE_GAME_SUCCESS = 'UPDATE_GAME_SUCCESS'
 export const SCORE = 'SCORE'
 export const BOMB = 'BOMB'
-
 
 const updateGames = games => ({
   type: UPDATE_GAMES,
@@ -85,7 +84,7 @@ export const updateGame = (gameId, board) => (dispatch, getState) => {
     .catch(err => console.error(err))
 }
 
-export const score = (gameId, score1) => (dispatch, getState) =>{
+export const score = (gameId, score1) => (dispatch, getState) => {
   const state = getState()
   const jwt = state.currentUser.jwt
 
@@ -97,13 +96,7 @@ export const score = (gameId, score1) => (dispatch, getState) =>{
     .catch(err => console.error(err))
 }
 
-// export const score = (games) =>({
-  
-//   type: SCORE,
-//   payload: games
-// })
-
-export const bomb = (gameId, score1) => (dispatch, getState) =>{
+export const bomb = (gameId, score1) => (dispatch, getState) => {
   const state = getState()
   const jwt = state.currentUser.jwt
 
