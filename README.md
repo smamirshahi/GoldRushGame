@@ -5,7 +5,9 @@ This repo contains a frontend and backend for a multiplayer Gold Rush game. It u
 ## Demo
 <a href="https://imgflip.com/gif/2hoat5"><img src="https://i.imgflip.com/2hoat5.gif" title="made at imgflip.com"/></a>
 
+
 [A demo of our game](client/src/images/demo.gif)
+
 
 ## Playing the game
 1. download the repo
